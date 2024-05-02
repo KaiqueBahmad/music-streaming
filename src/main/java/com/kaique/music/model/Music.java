@@ -16,7 +16,7 @@ public class Music {
 
     }
 
-    public Music(String name, UUID[] authorIDS, String coverURL) {
+    public Music(String name, String[] authorIDS, String coverURL) {
         this.name = name;
         this.authorIDS.addAll(Arrays.asList(authorIDS));
         this.coverURL = coverURL;
@@ -31,7 +31,7 @@ public class Music {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    private ArrayList<UUID> authorIDS = new ArrayList<>();
+    private ArrayList<String> authorIDS = new ArrayList<>();
     private String coverURL;
     private Long views = 0L;
 

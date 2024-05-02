@@ -2,9 +2,11 @@ package com.kaique.music.controller;
 
 
 import com.kaique.music.configuration.FileStorageConfiguration;
+import com.kaique.music.model.Author;
 import com.kaique.music.model.Music;
 import com.kaique.music.model.MusicRegister;
 import com.kaique.music.model.User;
+import com.kaique.music.service.AuthorServiceImpl;
 import com.kaique.music.service.MusicServiceImpl;
 import com.kaique.music.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -39,6 +42,9 @@ public class RegisterController {
     private MusicServiceImpl musicService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthorServiceImpl authorService;
+
     @PostMapping("/user")
     public ResponseEntity<User> createUser(@RequestBody User new_user) {
         if (!userService.idIsAvaliable(new_user.getId())) {
@@ -54,11 +60,17 @@ public class RegisterController {
     public ResponseEntity<Music> createMusic(@RequestParam("authors") String authorsString, @RequestParam("name") String musicName, @RequestParam("file") MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         String[] authors = authorsString.split(",");
-        UUID[] authorList = new UUID[authors.length];
+        String[] authorList = new String[authors.length];
         int count = 0;
         for (String author:authors) {
-
-            authorList[count++] = UUID.randomUUID();
+            Optional<Author> possibleAuthor = authorService.getAuthorByName(author);
+            Author authorObj;
+            if (possibleAuthor.isPresent()) {
+                authorObj = possibleAuthor.get();
+            } else {
+                authorObj = authorService.saveAuthor(new Author(author));
+            }
+            authorList[count++] = authorObj.getId().toString();
         }
         try {
             Path targetLocation = fileStorageLocation.resolve(fileName);

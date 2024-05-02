@@ -9,9 +9,15 @@ import java.util.UUID;
 public class Author {
     public Author() {
     }
+
+    public Author(String nome) {
+        this.nome = nome;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(unique = true)
     private String nome;
     private Long views = 0L;
 
