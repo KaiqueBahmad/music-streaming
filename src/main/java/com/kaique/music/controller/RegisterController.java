@@ -22,6 +22,7 @@ import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -57,10 +58,18 @@ public class RegisterController {
     }
 
     @PostMapping("/music")
-    public ResponseEntity<Music> createMusic(@RequestParam("authors") String authorsString, @RequestParam("name") String musicName, @RequestParam("file") MultipartFile file) {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    public ResponseEntity<Music> createMusic(@RequestParam("authors") String authorsString, @RequestParam("name") String musicName, @RequestParam("music-data") MultipartFile music_data, @RequestParam(required = false) Optional<MultipartFile> cover ) {
+        String MusicFileName = StringUtils.cleanPath(Objects.requireNonNull(music_data.getOriginalFilename()));
+        String CoverFileName;
+        if (cover.isPresent()) {
+            CoverFileName = StringUtils.cleanPath(Objects.requireNonNull(cover.get().getOriginalFilename()));
+        } else {
+            CoverFileName = "undefined";
+        }
+
         String[] authors = authorsString.split(",");
         String[] authorList = new String[authors.length];
+        System.out.println("teste");
         int count = 0;
         for (String author:authors) {
             Optional<Author> possibleAuthor = authorService.getAuthorByName(author);
@@ -73,9 +82,13 @@ public class RegisterController {
             authorList[count++] = authorObj.getId().toString();
         }
         try {
-            Path targetLocation = fileStorageLocation.resolve(fileName);
-            file.transferTo(targetLocation);
-            Music new_music = new Music(musicName, authorList, targetLocation.toString());
+            Path musicPath = fileStorageLocation.resolve("music_data/"+MusicFileName);
+            music_data.transferTo(musicPath);
+            Path coverPath = fileStorageLocation.resolve("music_data/"+CoverFileName);
+            if (cover.isPresent()) {
+                cover.get().transferTo(coverPath);
+            }
+            Music new_music = new Music(musicName, authorList, coverPath.toString(), musicPath.toString());
             Music created = this.musicService.saveMusic(new_music);
             URI newMusicLocation = ServletUriComponentsBuilder.fromCurrentContextPath().path("/music/{id}").buildAndExpand(created.getId()).toUri();
             return ResponseEntity.created(newMusicLocation).build();

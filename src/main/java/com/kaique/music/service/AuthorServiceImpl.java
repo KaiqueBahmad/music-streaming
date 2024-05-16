@@ -52,7 +52,7 @@ public class AuthorServiceImpl implements AuthorService {
             throw new IdNotFound(id.toString());
         }
         Author author = authorResp.get();
-        author.setNome(new_name);
+        author.setName(new_name);
         return authorRepository.save(author);
     }
 

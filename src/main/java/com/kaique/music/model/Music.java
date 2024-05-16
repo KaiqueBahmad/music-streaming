@@ -16,10 +16,11 @@ public class Music {
 
     }
 
-    public Music(String name, String[] authorIDS, String coverURL) {
+    public Music(String name, String[] authorIDS, String coverURL, String musicPath) {
         this.name = name;
         this.authorIDS.addAll(Arrays.asList(authorIDS));
         this.coverURL = coverURL;
+        this.musicPath = musicPath;
     }
 
     //    public Music(MusicRegister newMusicReq) {
@@ -33,6 +34,7 @@ public class Music {
     private String name;
     private ArrayList<String> authorIDS = new ArrayList<>();
     private String coverURL;
+    private String musicPath;
     private Long views = 0L;
 
     public UUID getId() {
@@ -50,11 +52,24 @@ public class Music {
         this.coverURL = coverURL;
     }
 
+    public String getMusicPath() {
+        return musicPath;
+    }
+
+    public void setMusicPath(String coverURL) {
+        this.musicPath = musicPath;
+    }
+
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getViews() {
+        return views;
     }
 }

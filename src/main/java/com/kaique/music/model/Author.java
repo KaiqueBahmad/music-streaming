@@ -10,25 +10,25 @@ public class Author {
     public Author() {
     }
 
-    public Author(String nome) {
-        this.nome = nome;
+    public Author(String name) {
+        this.name = name;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(unique = true)
-    private String nome;
+    private String name;
     private Long views = 0L;
 
     public UUID getId() {
         return id;
     }
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getViews() {
