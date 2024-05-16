@@ -32,6 +32,11 @@ public class Music {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
+
+    public ArrayList<String> getAuthorIDS() {
+        return authorIDS;
+    }
+
     private ArrayList<String> authorIDS = new ArrayList<>();
     private String coverURL;
     private String musicPath;

@@ -24,7 +24,7 @@ public class MusicServiceImpl implements MusicService {
 
     @Override
     public Optional<Music> getMusicById(UUID id) {
-        return Optional.empty();
+        return musicRepository.findById(id);
     }
 
     @Override

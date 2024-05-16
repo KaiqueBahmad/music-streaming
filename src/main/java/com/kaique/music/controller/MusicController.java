@@ -51,10 +51,11 @@ public class MusicController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> showUser(@PathVariable String id){
+    public ResponseEntity<MusicRepresentation> showUser(@PathVariable String id){
         UUID uid = UUID.fromString(id);
         System.out.println(uid);
         Optional<Music> music_ = this.musicService.getMusicById(uid);
+        System.out.println(music_.isPresent());
         if (music_.isPresent()) {
             return ResponseEntity.ok(new MusicRepresentation(music_.get()));
         }
