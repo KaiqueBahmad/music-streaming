@@ -1,0 +1,11 @@
+div {
+    border-right: 1px solid black;
+}
+
+ul {
+    display: flex;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
