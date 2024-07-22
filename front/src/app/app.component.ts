@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ContentComponent } from './content/content.component';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, ContentComponent, FooterComponent],
+  imports: [RouterOutlet],
   template: `
-  <app-header></app-header>
-  <app-content></app-content>
-  <app-footer></app-footer>
+    <router-outlet></router-outlet>
   `,
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'front';
+  constructor(private primengConfig: PrimeNGConfig) {}
+  ngOnInit() {
+    this.primengConfig.ripple = true;
+}
 }

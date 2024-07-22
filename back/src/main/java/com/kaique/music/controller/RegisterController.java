@@ -11,7 +11,6 @@ import com.kaique.music.service.MusicServiceImpl;
 import com.kaique.music.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,8 +41,6 @@ public class RegisterController {
     @Autowired
     private MusicServiceImpl musicService;
     @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
     private AuthorServiceImpl authorService;
 
     @PostMapping("/user")
@@ -51,7 +48,7 @@ public class RegisterController {
         if (!userService.idIsAvaliable(new_user.getId())) {
             new_user.blankId();
         }
-        new_user.setPassword(passwordEncoder.encode(new_user.getPassword()));
+        new_user.setPassword(new_user.getPassword());
         User created = this.userService.saveUser(new_user);
         URI newUserLocation = ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/{id}").buildAndExpand(created.getId()).toUri();
         return ResponseEntity.created(newUserLocation).build();

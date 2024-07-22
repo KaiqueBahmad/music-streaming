@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
+import { DButtonComponent } from '../../components/d-button/d-button.component';
 
 @Component({
   selector: 'app-user-info',
   standalone: true,
-  imports: [],
+  imports: [DButtonComponent],
   template: `
     <div id="user-info">
       <span>Seja bem-vindo, <strong>{{username}}</strong></span>
-      <button>Sair</button>
+      <app-d-button text="Sair" redirect="/sair" />
     </div>
   `,
   styleUrl: './user-info.component.css'

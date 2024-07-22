@@ -5,6 +5,7 @@ import com.kaique.music.model.MusicRepresentation;
 import com.kaique.music.model.PlaylistRepresentation;
 import com.kaique.music.repository.MusicRepository;
 import com.kaique.music.service.MusicServiceImpl;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +49,17 @@ public class MusicController {
             featured[i] = new MusicRepresentation(musics.get(i));
         }
         return ResponseEntity.ok(featured);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<MusicRepresentation>> showAllMusics() {
+        List<MusicRepresentation> musics = new ArrayList<>();
+
+        for (Music music : this.musicService.listAllMusics()) {
+            musics.add(new MusicRepresentation(music));
+        }
+
+        return ResponseEntity.ok(musics);
     }
 
     @GetMapping("/{id}")

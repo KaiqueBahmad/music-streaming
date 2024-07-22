@@ -19,7 +19,7 @@ public class MusicServiceImpl implements MusicService {
 
     @Override
     public Iterable<Music> listAllMusics() {
-        return null;
+        return musicRepository.findAll();
     }
 
     @Override

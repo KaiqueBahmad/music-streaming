@@ -1,10 +1,11 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { DButtonComponent } from "../../components/d-button/d-button.component";
 
 @Component({
   selector: 'app-featured',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, DButtonComponent],
   template: `
   <div>
     <h2>Featured Songs</h2>
@@ -12,6 +13,7 @@ import { Component } from '@angular/core';
       <li>
         <img src="{{music[0]}}" alt="{{music[1]}}">
         <span>{{music[1]}}</span>
+        <app-d-button></app-d-button>
       </li>
     </ul>
   </div>
