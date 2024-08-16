@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -25,9 +26,13 @@ public class Author {
 	public Author() {
 	
 	}
+
+	public Author(String name) {
+		this.name = name;
+		this.musics = new HashSet<>();
+	}
 	
-	public Author(UUID id, String name, Set<Music> musics) {
-		this.id = id;
+	public Author(String name, Set<Music> musics) {
 		this.name = name;
 		this.musics = musics;
 	}

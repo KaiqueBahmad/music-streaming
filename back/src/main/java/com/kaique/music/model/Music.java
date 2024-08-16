@@ -16,7 +16,13 @@ import java.util.UUID;
 @Table(name = "musics")
 @Entity
 public class Music {
-    public Music() {
+
+	private String name;
+	private String coverURL;
+	private String musicPath;
+	private Long views = 0L;
+    
+	public Music() {
 
     }
 
@@ -42,12 +48,6 @@ public class Music {
 		this.authors = authors;
 	}
 
-	private String name;
-
-
-    private String coverURL;
-    private String musicPath;
-    private Long views = 0L;
 
     public UUID getId() {
         return id;
