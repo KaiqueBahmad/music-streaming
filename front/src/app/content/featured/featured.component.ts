@@ -13,7 +13,7 @@ import { DButtonComponent } from "../../components/d-button/d-button.component";
       <li>
         <img src="{{music[0]}}" alt="{{music[1]}}">
         <span>{{music[1]}}</span>
-        <app-d-button></app-d-button>
+        <app-d-button icon="play"></app-d-button>
       </li>
     </ul>
   </div>
