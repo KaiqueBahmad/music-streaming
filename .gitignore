@@ -3,13 +3,13 @@
 /front/tmp
 /front/out-tsc
 /front/bazel-out
-/front/
-/front/# Node
+
+# Node
 /front/node_modules
 /front/npm-debug.log
 /front/yarn-error.log
-/front/
-/front/# IDEs and editors
+
+# IDEs and editors
 /front/.idea/
 /front/.project
 /front/.classpath
@@ -18,7 +18,7 @@
 /front/.settings/
 /front/*.sublime-workspace
 
-/front/# Visual Studio Code
+# Visual Studio Code
 /front/.vscode/*
 /front/!.vscode/settings.json
 /front/!.vscode/tasks.json
