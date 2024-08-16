@@ -1,0 +1,70 @@
+# Compiled output
+/front/dist
+/front/tmp
+/front/out-tsc
+/front/bazel-out
+/front/
+/front/# Node
+/front/node_modules
+/front/npm-debug.log
+/front/yarn-error.log
+/front/
+/front/# IDEs and editors
+/front/.idea/
+/front/.project
+/front/.classpath
+/front/.c9/
+/front/*.launch
+/front/.settings/
+/front/*.sublime-workspace
+
+/front/# Visual Studio Code
+/front/.vscode/*
+/front/!.vscode/settings.json
+/front/!.vscode/tasks.json
+/front/!.vscode/launch.json
+/front/!.vscode/extensions.json
+/front/.history/*
+
+# Miscellaneous
+/front/.angular/cache
+/front/.sass-cache/
+/front/connect.lock
+/front/coverage
+/front/libpeerconnection.log
+/front/testem.log
+/front/typings
+
+# System files
+/front/.DS_Store
+/front/Thumbs.db
+
+
+
+/back/.env
+# Compiled class file
+/back/*.class
+
+# Log file
+/back/*.log
+
+# BlueJ files
+/back/*.ctxt
+
+# Mobile Tools for Java (J2ME)
+/back/.mtj.tmp/
+
+# Package Files #
+/back/*.jar
+/back/*.war
+/back/*.nar
+/back/*.ear
+/back/*.zip
+/back/*.tar.gz
+/back/*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+/back/hs_err_pid*
+/back/replay_pid*
+/back/target/*
+/back/target/

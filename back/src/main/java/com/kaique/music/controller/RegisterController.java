@@ -6,8 +6,8 @@ import com.kaique.music.model.Author;
 import com.kaique.music.model.Music;
 import com.kaique.music.model.MusicRegister;
 import com.kaique.music.model.User;
-import com.kaique.music.service.AuthorServiceImpl;
-import com.kaique.music.service.MusicServiceImpl;
+import com.kaique.music.service.AuthorService;
+import com.kaique.music.service.MusicService;
 import com.kaique.music.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,9 +39,9 @@ public class RegisterController {
     @Autowired
     private UserServiceImpl userService;
     @Autowired
-    private MusicServiceImpl musicService;
+    private MusicService musicService;
     @Autowired
-    private AuthorServiceImpl authorService;
+    private AuthorService authorService;
 
     @PostMapping("/user")
     public ResponseEntity<User> createUser(@RequestBody User new_user) {
@@ -74,7 +74,7 @@ public class RegisterController {
             if (possibleAuthor.isPresent()) {
                 authorObj = possibleAuthor.get();
             } else {
-                authorObj = authorService.saveAuthor(new Author(author));
+                authorObj = authorService.saveAuthor(null);
             }
             authorList[count++] = authorObj.getId().toString();
         }
@@ -85,10 +85,10 @@ public class RegisterController {
             if (cover.isPresent()) {
                 cover.get().transferTo(coverPath);
             }
-            Music new_music = new Music(musicName, authorList, coverPath.toString(), musicPath.toString());
-            Music created = this.musicService.saveMusic(new_music);
-            URI newMusicLocation = ServletUriComponentsBuilder.fromCurrentContextPath().path("/music/{id}").buildAndExpand(created.getId()).toUri();
-            return ResponseEntity.created(newMusicLocation).build();
+//            Music new_music = new Music(musicName, authorList, coverPath.toString(), musicPath.toString());
+//            Music created = this.musicService.saveMusic(new_music);
+//            URI newMusicLocation = ServletUriComponentsBuilder.fromCurrentContextPath().path("/music/{id}").buildAndExpand(created.getId()).toUri();
+            return ResponseEntity.created(null).build();
         } catch (IOException exception) {
             exception.printStackTrace();
             return ResponseEntity.badRequest().build();

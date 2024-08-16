@@ -10,38 +10,38 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class PlaylistServiceImpl implements PlaylistService {
+public class PlaylistServiceImpl {
     @Autowired
     private PlaylistRepository playlistRepository;
     @Autowired
     private UserRepository userRepository;
 
-    @Override
+    
     public Iterable<Playlist> listAllPlaylists() {
         return playlistRepository.findAll();
     }
 
-    @Override
+    
     public Optional<Playlist> getPlaylistById(UUID id) {
         return playlistRepository.findById(id);
     }
 
-    @Override
+    
     public boolean idIsAvaliable(UUID id) {
         return !playlistRepository.existsById(id);
     }
 
-    @Override
+    
     public Iterable<Playlist> getPlaylistsByName(String name) {
         return playlistRepository.findAllByName(name);
     }
 
-    @Override
+    
     public Playlist savePlaylist(Playlist playlist) {
         return playlistRepository.save(playlist);
     }
 
-    @Override
+    
     public Playlist changePlaylistName(UUID id, String new_name) {
         Optional<Playlist> playlist = playlistRepository.findById(id);
         if (playlist.isPresent()) {
@@ -51,7 +51,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         return null;
     }
 
-    @Override
+    
     public void deletePlaylist(UUID id) {
         for (User usr: userRepository.findAll()) {
             if (usr.havePlaylist(id)) {
@@ -61,7 +61,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         playlistRepository.deleteById(id);
     }
 
-    @Override
+    
     public Playlist addMusicToPlaylist(UUID playlistId, UUID musicID) {
         Optional<Playlist> playlist_ = playlistRepository.findById(playlistId);
         if (playlist_.isPresent()) {
@@ -72,7 +72,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         return null;
     }
 
-    @Override
+    
     public void removeMusicFromPlaylist(UUID playlistId, UUID musicID) {
         Optional<Playlist> playlist_ = playlistRepository.findById(playlistId);
         if (playlist_.isPresent()) {

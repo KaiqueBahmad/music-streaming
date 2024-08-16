@@ -4,7 +4,7 @@ import com.kaique.music.model.Music;
 import com.kaique.music.model.MusicRepresentation;
 import com.kaique.music.model.PlaylistRepresentation;
 import com.kaique.music.repository.MusicRepository;
-import com.kaique.music.service.MusicServiceImpl;
+import com.kaique.music.service.MusicService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.*;
 @RequestMapping({"/music"})
 public class MusicController {
     @Autowired
-    private MusicServiceImpl musicService;
+    private MusicService musicService;
     @Autowired
     private MusicRepository repo;
 

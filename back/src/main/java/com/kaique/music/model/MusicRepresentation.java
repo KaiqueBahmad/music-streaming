@@ -1,7 +1,7 @@
 package com.kaique.music.model;
 
 import com.kaique.music.exceptions.IdNotFound;
-import com.kaique.music.service.AuthorServiceImpl;
+import com.kaique.music.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.nio.file.Path;

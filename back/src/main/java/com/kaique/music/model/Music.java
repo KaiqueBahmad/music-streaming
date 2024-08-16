@@ -7,6 +7,10 @@ import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "musics")
@@ -16,28 +20,31 @@ public class Music {
 
     }
 
-    public Music(String name, String[] authorIDS, String coverURL, String musicPath) {
-        this.name = name;
-        this.authorIDS.addAll(Arrays.asList(authorIDS));
-        this.coverURL = coverURL;
-        this.musicPath = musicPath;
+    public Music(String name, Collection<Author> authors, String coverURL, String musicPath) {
+        this.name 		= name;
+        this.coverURL 	= coverURL;
+        this.musicPath 	= musicPath;
+        this.authors 	= new HashSet<Author>(authors); 
     }
 
-    //    public Music(MusicRegister newMusicReq) {
-//        this.id = newMusicReq.getId();
-//        this.name = newMusicReq.getNome();
-//        this.authorIDS.addAll(Arrays.asList(newMusicReq.getAuthorIDs()));
-//    }
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String name;
+    
+	@ManyToMany
+	private Set<Author> authors;
 
-    public ArrayList<String> getAuthorIDS() {
-        return authorIDS;
-    }
+    public Set<Author> getAuthors() {
+		return authors;
+	}
 
-    private ArrayList<String> authorIDS = new ArrayList<>();
+	public void setAuthors(Set<Author> authors) {
+		this.authors = authors;
+	}
+
+	private String name;
+
+
     private String coverURL;
     private String musicPath;
     private Long views = 0L;
@@ -61,7 +68,7 @@ public class Music {
         return musicPath;
     }
 
-    public void setMusicPath(String coverURL) {
+    public void setMusicPath(String musicPath) {
         this.musicPath = musicPath;
     }
 

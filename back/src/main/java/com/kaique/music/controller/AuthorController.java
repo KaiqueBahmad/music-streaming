@@ -4,8 +4,8 @@ import com.kaique.music.exceptions.IdNotFound;
 import com.kaique.music.model.Author;
 import com.kaique.music.model.Music;
 import com.kaique.music.model.MusicRepresentation;
-import com.kaique.music.service.AuthorServiceImpl;
-import com.kaique.music.service.MusicServiceImpl;
+import com.kaique.music.service.AuthorService;
+import com.kaique.music.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequestMapping({"/author"})
 public class AuthorController {
     @Autowired
-    private AuthorServiceImpl authorService;
+    private AuthorService authorService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> showUser(@PathVariable String id){
