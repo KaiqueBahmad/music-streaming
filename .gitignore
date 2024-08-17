@@ -1,3 +1,4 @@
+.project
 # Compiled output
 /front/dist
 /front/tmp
@@ -68,3 +69,4 @@
 /back/replay_pid*
 /back/target/*
 /back/target/
+/back/src/main/resources/application.properties
