@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Music } from '../../../components/interfaces/Music.interface';
 import { DButtonComponent } from "../../../components/d-button/d-button.component";
 import { NgIf } from '@angular/common';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-card',
@@ -14,10 +15,22 @@ import { NgIf } from '@angular/common';
       <p>{{music.name}}</p>
       <p>{{music.authors}}</p>
   </div>
-  <app-d-button *ngIf="mouseIsOver" class="" icon="play"></app-d-button>
+  <app-d-button @fadeInOut *ngIf="mouseIsOver" class="" icon="play"></app-d-button>
 </div>
 `,
-  styleUrl: './card.component.css'
+  styleUrl: './card.component.css',
+  animations: [
+    trigger('fadeInOut', [
+      state('in', style({ opacity: 1 })),
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('250ms ease-in')
+      ]),
+      transition(':leave', [
+        animate('250ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class CardComponent {
   @Input() music!:Music;
