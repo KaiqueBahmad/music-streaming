@@ -8,13 +8,13 @@ import com.kaique.music.model.Music;
 
 public class MusicGet {
 	private String name = "";
-	private String imagePath = "";
-	private String author = "";
+	private String coverPath = "";
+	private String authors = "";
 	
 	
 	public MusicGet(Music music) {
 		this.name 		= music.getName();
-		this.imagePath 	= music.getCoverURL();
+		this.coverPath 	= music.getCoverURL();
 		String[] authorsNameList =  new String[music.getAuthors().size()];
 		List<Author> authors = new ArrayList<Author>(music.getAuthors()); 
 		int i = 0;
@@ -22,8 +22,8 @@ public class MusicGet {
 			authorsNameList[i] = authors.get(i).getName();
 			i++;
 		}
-		this.author = String.join(", ", authorsNameList);
-		System.out.println(this.author);
+		this.authors = String.join(", ", authorsNameList);
+		System.out.println(this.authors);
 	
 	}
 	
@@ -33,19 +33,19 @@ public class MusicGet {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getImagePath() {
-		return imagePath;
+	public String getCoverPath() {
+		return coverPath;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public String getAuthor() {
-		return author;
+	public void setCoverPath(String imagePath) {
+		this.coverPath = imagePath;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public String getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(String author) {
+		this.authors = author;
 	}
 	
 	
