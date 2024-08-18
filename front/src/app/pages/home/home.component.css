@@ -1,0 +1,32 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    justify-content: space-between;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 14vh;
+    width: 100%;
+    z-index: 1000; /* Ensure it is above other content */
+  }
+  
+app-player-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 14vh;
+    width: 100%;
+    z-index: 1000;
+    background-color: black; 
+}
+
+.content {
+    overflow-y: auto;
+    height: 65vh;
+    max-height: 70vh;
+  }
+  

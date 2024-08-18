@@ -1,9 +1,6 @@
-div {
-    border-right: 1px solid black;
-}
-
 ul {
     display: flex;
+    flex-direction: row;
 }
 
 h2 {

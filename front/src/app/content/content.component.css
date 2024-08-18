@@ -1,12 +1,6 @@
 #content {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 25px;
-}
-app-featured {
-    width: 50%;
-}
-app-playlists {
-    width: 50%;
 }
 

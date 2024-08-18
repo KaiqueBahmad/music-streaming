@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ButtonModule, RouterModule, CommonModule],
   template: `
-  <p-button (onClick)="goTo($event)" [icon]="iconCode" [label]="text">
+  <p-button [disabled]="disabled" (onClick)="goTo($event)" [icon]="iconCode" [label]="text">
 `,
   styleUrl: './d-button.component.css'
 })
@@ -17,6 +17,7 @@ export class DButtonComponent implements OnInit {
   @Input() redirect = "";
   @Input() icon = "";
   @Output() clicked = new EventEmitter<MouseEvent>();
+  @Input() disabled = false;
   iconCode:string = "";
   constructor (private router:Router) {
 
@@ -35,7 +36,9 @@ export class DButtonComponent implements OnInit {
 
   private iconDicionary: {[key: string]: string} = {
     "": "",
-    "play": "pi pi-play"
+    "play": "pi pi-play",
+    "previous": "pi pi-step-backward",
+    "next": "pi pi-step-forward"
   }
 
 }

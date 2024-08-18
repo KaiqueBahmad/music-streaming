@@ -9,7 +9,7 @@ import { PlaylistsComponent } from './playlists/playlists.component';
   template: `
   <div id="content">
     <app-featured></app-featured>
-    <app-playlists></app-playlists>
+    <!-- <app-playlists></app-playlists> -->
   </div>
   `,
   styleUrl: './content.component.css'

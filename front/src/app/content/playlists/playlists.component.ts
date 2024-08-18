@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
   <div>
   <h2>Playlists</h2>
   <ul class="music-box" *ngFor="let playlist of playlists">
-      <li>
+      <li class="item">
         <img src="{{playlist[0]}}" alt="{{playlist[1]}}">
         <span>{{playlist[1]}}</span>
       </li>

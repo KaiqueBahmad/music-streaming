@@ -1,0 +1,21 @@
+.music-box {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+  
+.music-box app-card {
+padding-bottom: 5px;
+width: 50%;
+}
+
+.item {
+    width: 25vw;
+    height: 30vh;
+    margin: 10px;
+    background-color: rgb(170, 170, 213);
+    padding: 10px;
+}
+.item app-d-button {
+    transition: 0.5s;
+}
