@@ -37,5 +37,8 @@ public class UserController {
         userService.saveUser(new User("teste","da silva","teste.silva","testedasilva@gmail.com", "ansjkdbnjaskzxk!21"));
         return "User criado";
     }
-    
+    @GetMapping("/")
+    public ResponseEntity<String> hello(){
+    	return ResponseEntity.ok("Welcome to music-app API");
+    }
 }

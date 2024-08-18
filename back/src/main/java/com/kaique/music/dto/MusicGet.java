@@ -39,5 +39,15 @@ public class MusicGet {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	
 	
 }

@@ -2,6 +2,8 @@ package com.kaique.music.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.lang.reflect.Array;
 import java.nio.file.Path;
@@ -17,11 +19,21 @@ import java.util.UUID;
 @Entity
 public class Music {
 
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+	private UUID id;
+	
+	@NotNull
+    @Size(min = 1)
+	@ManyToMany
+	private Set<Author> authors;	
+	
+	
 	private String name;
 	private String coverURL;
 	private String musicPath;
 	private Long views = 0L;
-    
 	public Music() {
 
     }
@@ -33,12 +45,9 @@ public class Music {
         this.authors 	= new HashSet<Author>(authors); 
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
     
-	@ManyToMany
-	private Set<Author> authors;
+    
+	
 
     public Set<Author> getAuthors() {
 		return authors;

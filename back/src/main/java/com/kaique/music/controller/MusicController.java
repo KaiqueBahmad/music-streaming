@@ -1,5 +1,6 @@
-package com.kaique.music.controller;
+ package com.kaique.music.controller;
 
+import com.kaique.music.dto.MusicGet;
 import com.kaique.music.model.Music;
 import com.kaique.music.model.MusicRepresentation;
 import com.kaique.music.model.PlaylistRepresentation;
@@ -25,29 +26,23 @@ public class MusicController {
     private MusicRepository repo;
 
     @GetMapping("/featured")
-    public ResponseEntity<MusicRepresentation[]> featuredSongs(@PathVariable(value = "5", required = false) Integer limit) {
+    public ResponseEntity<List<MusicGet>> featuredSongs() {
         // I should make a query for this operation
-//        Iterable<Music> musicsIterator = musicService.listAllMusics();
-        Iterable<Music> musicsIterator = repo.findAll();
-        ArrayList<Music> musics = new ArrayList<>();
-        for (Music music:musicsIterator) {
-            musics.add(music);
-        }
-        musics.sort(new Comparator<Music>() {
+        List<Music> allMusics = repo.findAll();
+        ArrayList<MusicGet> featured = new ArrayList<>();
+        allMusics.sort(new Comparator<Music>() {
             @Override
             public int compare(Music m1, Music m2) {
-                return Long.compare(m1.getViews(), m2.getViews());
+                return Long.compare( m2.getViews(), m1.getViews());
             }
         });
-        MusicRepresentation[] featured;
-        if (limit < musics.size()) {
-            featured = new MusicRepresentation[limit];
-        } else {
-            featured = new MusicRepresentation[musics.size()];
+        int i = 0;
+        while (i < 10 && i < allMusics.size()) {
+        	featured.add(new MusicGet(allMusics.get(i)));
+        	i++;
         }
-        for (int i = musics.size() - 1; i >=musics.size() - 6 ; i--) {
-            featured[i] = new MusicRepresentation(musics.get(i));
-        }
+        
+        
         return ResponseEntity.ok(featured);
     }
 

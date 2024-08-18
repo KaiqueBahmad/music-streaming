@@ -18,8 +18,7 @@ public class Author {
     @Column()
     private String name;
     
-    @NotNull
-    @Size(min = 1)
+    
     @ManyToMany( mappedBy = "authors" )
     private Set<Music> musics;
 	
