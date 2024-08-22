@@ -15,8 +15,6 @@ export class FeaturedService {
 
   getFeatured() {
     return this.http.get<Music[]>(this.featuredUrl);
-
-
   }
 
 }
