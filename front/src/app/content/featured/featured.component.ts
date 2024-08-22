@@ -17,16 +17,13 @@ import { CarouselModule } from 'primeng/carousel';
     <h2>Featured Songs <button (click)="debug()">
       debug
     </button></h2>
-    <p-carousel [value]="featuredMusics" [numVisible]="3" [numScroll]="3" [circular]="false">
+    <p-carousel [value]="featuredMusics" [numVisible]="4" [numScroll]="1" [circular]="false">
       <ng-template let-music pTemplate="item">
         <app-card [music]="music" ></app-card>
       </ng-template>
     </p-carousel>
 
-      <!-- <app-card [music]="music" *ngFor="let music of featuredMusics;">
-        </app-card> -->
-
-    
+  </div>   
   `,
   styleUrl: './featured.component.css'
 })

@@ -10,8 +10,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   imports: [DButtonComponent, NgIf],
   template: `
 <div class="item" (mouseover)="this.mouseIsOver = true;" (mouseout)="this.mouseIsOver = false;" >
-  <div class="music-box-about"  >
-      <img src="{{music.CoverPath}}" alt="Imagem não Encontrada">
+  <div class="music-box-about">
+      <img src="{{music.coverPath}}" alt="Imagem não Encontrada">
       <p>{{music.name}}</p>
       <p>{{music.authors}}</p>
   </div>
